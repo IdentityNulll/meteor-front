@@ -1,0 +1,9 @@
+{
+    "header" : {
+        "home" : "Bosh",
+        "genres": "Janrlar",
+        "profile": "Profil",
+        "login": "Ro'yxatdan o'tish",
+        "stream" : "Anime Stream"
+    }
+}

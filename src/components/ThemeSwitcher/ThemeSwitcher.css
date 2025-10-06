@@ -1,0 +1,59 @@
+.theme-toggle {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+/* Hover & Focus Effects */
+.theme-toggle:hover,
+.theme-toggle:focus {
+  background: var(--primary-color);
+  color: #fff;
+  box-shadow: var(--shadow-hover);
+  border-color: transparent;
+  transform: scale(1.03);
+}
+
+/* Active/Pressed State */
+.theme-toggle:active {
+  transform: scale(0.97);
+}
+
+/* Icon Styling */
+.theme-icon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+/* Animate the icon when toggling */
+.theme-toggle:hover .theme-icon {
+  transform: rotate(20deg);
+}
+
+/* Text Label */
+.theme-label {
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+}
+
+/* Smooth adaptation to theme change */
+:root[data-theme="light"] .theme-toggle {
+  background: var(--card-background);
+  color: var(--text-color);
+}
+
+:root[data-theme="dark"] .theme-toggle {
+  background: var(--secondary-color);
+  color: var(--text-color);
+}

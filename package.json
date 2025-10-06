@@ -17,8 +17,10 @@
     "@fortawesome/react-fontawesome": "^3.1.0",
     "axios": "^1.12.2",
     "i18n": "^0.15.2",
+    "i18next": "^25.5.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-i18next": "^16.0.0",
     "react-router-dom": "^7.9.3",
     "react-toastify": "^11.0.5"
   },

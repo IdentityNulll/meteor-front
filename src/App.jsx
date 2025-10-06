@@ -6,6 +6,7 @@ import Home from './pages/home/Home'
 import Genres from './pages/genre/Genres'
 import Login from './pages/Login/Login'
 import Header from './components/Header/Header'
+import './styles/Theme.css'
 
 
 function App() {
