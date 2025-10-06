@@ -1,0 +1,270 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
+  overflow: hidden;
+  position: relative;
+  transition: var(--transition);
+}
+
+/* ==========================
+🌌 Background + Canvas
+========================== */
+.animated-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background-color);
+  overflow: hidden;
+  z-index: 1;
+}
+
+#particles-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* ==========================
+📦 Container
+========================== */
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+/* ==========================
+🧭 Header
+========================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.logo {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ==========================
+🌗 Theme Toggle
+========================== */
+.theme-toggle-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] .theme-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================
+📖 Main Content
+========================== */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding-top: 40px;
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.title-container h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
+}
+
+.title-container p {
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+/* ==========================
+🔍 Search
+========================== */
+.search-container {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 5px;
+}
+
+.search-box {
+  display: flex;
+  border: 2px solid var(--primary-color);
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--card-background);
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+}
+
+.search-input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  padding: 15px 20px;
+  color: var(--text-color);
+  font-size: 16px;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-btn {
+  background: var(--primary-color);
+  border: none;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.search-btn:hover {
+  background: #ff2d35;
+}
+
+.search-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==========================
+🦶 Footer
+========================== */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--primary-color);
+}
+
+.footer-brand {
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+/* ==========================
+📱 Responsive
+========================== */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .logo {
+    width: 140px;
+  }
+
+  .title-container h1 {
+    font-size: 36px;
+  }
+
+  .title-container p {
+    font-size: 16px;
+  }
+
+  .search-container {
+    max-width: 90%;
+  }
+
+  .main-content {
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 120px;
+  }
+
+  .title-container h1 {
+    font-size: 28px;
+  }
+
+  .title-container p {
+    font-size: 14px;
+  }
+
+  .search-container {
+    max-width: 95%;
+  }
+
+  .main-content {
+    padding-top: 20px;
+  }
+}

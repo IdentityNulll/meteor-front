@@ -8,14 +8,11 @@ import "swiper/css/pagination";
 import { useTranslation } from "react-i18next";
 
 function Home() {
-    const {t} = useTranslation()
+  const { t } = useTranslation();
   const [featured, setFeatured] = useState([]);
   const [popular, setPopular] = useState([]);
 
-  // ✅ Later you'll connect this with your backend
-  // Example: axios.get("/api/anime/featured")
   useEffect(() => {
-    // Simulated backend data
     const fakeFeatured = [
       {
         _id: "1",
@@ -70,7 +67,7 @@ function Home() {
 
   return (
     <div className="home-container">
-      {/* 🎬 Hero Swiper Section */}
+      {/* 🎬 Hero Section */}
       <section className="hero-section">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
@@ -95,18 +92,20 @@ function Home() {
         </Swiper>
       </section>
 
-      {/* 🔥 Popular Anime Section */}
+      {/* 🔥 Popular Section */}
       <section className="anime-section">
         <h2>🔥 {t("home.popular")}</h2>
         <Swiper
           modules={[Navigation]}
           spaceBetween={20}
-          slidesPerView={4}
+          slidesPerView={5}
           navigation
           breakpoints={{
-            320: { slidesPerView: 2 },
-            640: { slidesPerView: 3 },
-            1024: { slidesPerView: 5 },
+            320: { slidesPerView: 2, spaceBetween: 10 },
+            480: { slidesPerView: 2.5, spaceBetween: 15 },
+            640: { slidesPerView: 3, spaceBetween: 20 },
+            900: { slidesPerView: 4, spaceBetween: 25 },
+            1200: { slidesPerView: 5, spaceBetween: 30 },
           }}
         >
           {popular.map((anime) => (

@@ -29,5 +29,10 @@
       "Psixologik",
       "Tarixiy"
     ]
-  }
+  },
+    "search": {
+        "placeholder": "Animelarni qidirish...",
+        "meteor": "METEOR DUBBING",
+        "Anime": "O'zbekistondagi Eng Yaxshi Anime Ko'rish Sayti"
+    }
 }

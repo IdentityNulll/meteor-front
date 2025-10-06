@@ -100,20 +100,35 @@ li {
   text-shadow: 0 0 10px var(--primary-color);
 }
 
-/* Active link (optional, if you add activeClassName) */
+/* Active link (optional) */
 .nav-links a.active {
   color: var(--primary-color);
 }
 
 /* ----------------------------- */
-/* Utilities Section (right side) */
+/* Utilities Section */
 .utilis {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* Login Button Glow Effect */
+.login-btn {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 160px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.4s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Login Button Glow */
 .utilis button {
   background: var(--primary-color);
   color: #fff;
@@ -124,7 +139,6 @@ li {
   cursor: pointer;
   transition: 0.4s ease;
   font-weight: 500;
-  box-shadow: 0 0 10px transparent;
   position: relative;
   overflow: hidden;
 }
@@ -137,7 +151,12 @@ li {
   left: -75%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   transform: skewX(-25deg);
   transition: 0.5s;
 }
@@ -157,24 +176,91 @@ li {
 }
 
 /* ----------------------------- */
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  z-index: 110;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* When open, turn into X */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ----------------------------- */
+/* Mobile Dropdown Menu */
+.mobile-menu {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 100%;
+  background: var(--secondary-color);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-color);
+  animation: slideDown 0.3s ease forwards;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu a {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  color: var(--primary-color);
+}
+
+/* ----------------------------- */
 /* Responsive */
-@media (max-width: 768px) {
-  .header-container {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 10px 20px;
+@media (max-width: 680px) {
+  .utilis {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
   }
 
   .nav-links {
-    gap: 15px;
+    display: none;
   }
 
-  .logo span {
-    font-size: 1.1rem;
-  }
-
-  .utilis button {
-    padding: 5px 10px;
-    font-size: 0.8rem;
+  .mobile-menu .login-btn {
+    width: 70%;
   }
 }

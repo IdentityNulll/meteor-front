@@ -2,13 +2,14 @@
   padding-bottom: 50px;
   background-color: var(--background-color);
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 /* === Hero Section === */
 .hero-section {
   position: relative;
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   overflow: hidden;
 }
 
@@ -22,86 +23,242 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(70%);
-  transition: var(--transition);
+  filter: brightness(70%) contrast(1.1);
+  transition: transform 2s ease;
+}
+
+.hero-slide:hover img {
+  transform: scale(1.05);
 }
 
 .hero-overlay {
   position: absolute;
-  bottom: 20%;
+  bottom: 15%;
   left: 5%;
-  color: #fff;
   z-index: 2;
+  max-width: 550px;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 4px solid var(--primary-color);
+  padding: 20px 25px;
+  border-radius: 10px;
+  animation: fadeUp 1s ease;
 }
 
 .hero-overlay h2 {
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
   margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  color: #fff;
 }
 
 .hero-overlay p {
-  color: var(--text-secondary);
-  font-size: 1rem;
+  color: #ddd;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   margin-bottom: 20px;
-  max-width: 500px;
+  line-height: 1.4;
 }
 
 .hero-overlay button {
   background: var(--primary-color);
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 24px;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
+  transition: 0.3s ease;
+  box-shadow: 0 0 12px transparent;
 }
 
 .hero-overlay button:hover {
   transform: scale(1.05);
   background: #ff2d35;
+  box-shadow: 0 0 12px var(--primary-color);
 }
 
-/* === Popular Anime Section === */
+/* === Popular Section === */
 .anime-section {
-  padding: 40px 5%;
+  padding: 50px 5%;
 }
 
 .anime-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
+/* === Anime Cards === */
 .anime-card {
   background: var(--card-background);
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: var(--transition);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 .anime-card img {
   width: 100%;
-  height: 220px;
+  height: 250px;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.anime-card:hover img {
+  transform: scale(1.1);
 }
 
 .anime-card:hover {
-  transform: translateY(-5px) scale(1.03);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
 }
 
 .anime-info {
-  padding: 10px;
+  padding: 12px 14px;
+  text-align: center;
 }
 
 .anime-info h4 {
   font-size: 1rem;
   color: var(--text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Prevent unwanted extra space under the swiper */
+.hero-section,
+.hero-swiper,
+.swiper {
+  overflow: hidden !important;
+}
+
+/* Force swiper slides to take full height of parent */
+.hero-section .swiper,
+.hero-section .swiper-wrapper,
+.hero-section .swiper-slide {
+  height: 100% !important;
+}
+
+/* Remove bottom gap caused by pagination on small screens */
+.swiper-pagination {
+  bottom: 8px !important;
+  margin: 0 !important;
+}
+
+/* Smooth scaling for mobile without leaving gaps */
+@media (max-width: 480px) {
+  .hero-section {
+    height: 65vh; /* slightly taller to avoid content clipping */
+  }
+
+  .hero-slide img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    bottom: 8%;
+    padding: 10px 14px;
+    border-left: 3px solid var(--primary-color);
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  /* Remove possible bottom spacing between sections */
+  .anime-section {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin: 0;
+  }
+
+  body,
+  html {
+    overflow-x: hidden;
+  }
 }
 
 .anime-info p {
   font-size: 0.85rem;
   color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* === Swiper Pagination Fix === */
+.swiper-pagination-bullet {
+  background: var(--primary-color) !important;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--primary-color) !important;
+  opacity: 1;
+}
+
+/* === Animations === */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive Goodness === */
+@media (max-width: 1024px) {
+  .hero-section {
+    height: 65vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-overlay {
+    bottom: 10%;
+    left: 4%;
+    max-width: 80%;
+    padding: 15px;
+  }
+
+  .hero-overlay h2 {
+    font-size: 1.6rem;
+  }
+
+  .anime-card img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 55vh;
+  }
+
+  .hero-overlay {
+    bottom: 5%;
+    left: 3%;
+    padding: 12px;
+    border-left: 3px solid var(--primary-color);
+  }
+
+  .hero-overlay h2 {
+    font-size: 1.3rem;
+  }
+
+  .hero-overlay p {
+    font-size: 0.8rem;
+  }
+
+  .hero-overlay button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  .anime-section {
+    padding: 30px 4%;
+  }
 }
