@@ -1,0 +1,42 @@
+.genres-container {
+  padding: 2rem;
+  color: var(--text-color);
+  background: var(--bg-color);
+  min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.genres-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.2rem;
+}
+
+.genre-card {
+  background: var(--card-bg, rgba(255, 255, 255, 0.05));
+  border: 2px solid var(--border-color, rgba(255, 255, 255, 0.2));
+  border-radius: 16px;
+  text-align: center;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+.genre-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--text-color);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.genre-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+}

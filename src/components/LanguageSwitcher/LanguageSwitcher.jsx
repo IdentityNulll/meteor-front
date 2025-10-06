@@ -13,14 +13,14 @@ function LanguageSwitcher() {
     <div className="language-switcher">
       <button
         className={`lang-btn ${i18n.language === "uz" ? "active" : ""}`}
-        onClick={() => changeLanguage("en")}
+        onClick={() => changeLanguage("uz")}
       >
         <span className="label">Uz</span>
       </button>
 
       <button
-        className={`lang-btn ${i18n.language === "jp" ? "active" : ""}`}
-        onClick={() => changeLanguage("jp")}
+        className={`lang-btn ${i18n.language === "ru" ? "active" : ""}`}
+        onClick={() => changeLanguage("ru")}
       >
         <span className="label">Ru</span>
       </button>

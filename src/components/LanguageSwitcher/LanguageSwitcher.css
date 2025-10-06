@@ -1,44 +1,65 @@
 .language-switcher {
   display: flex;
-  gap: 12px;
-  margin-top: 20px;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Button base */
+/* Base Button */
 .lang-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 8px 14px;
-  border: 2px solid var(--text-color);
-  background: var(--bg-color);
+  padding: 6px 12px;
+  border: 1.5px solid var(--border-color);
+  background: var(--card-background);
   color: var(--text-color);
-  font-weight: bold;
-  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 25px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
 }
 
 /* Hover effect */
 .lang-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  background: var(--text-color);
-  color: var(--bg-color);
+  background: var(--primary-color);
+  color: #fff;
+  border-color: transparent;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
 }
 
 /* Active (current language) */
 .lang-btn.active {
-  background: var(--text-color);
-  color: var(--bg-color);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background: var(--primary-color);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--shadow-hover);
+  transform: scale(1.08);
 }
 
-/* Flag animation */
+/* Label */
+.lang-btn .label {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Optional subtle flag/icon animation (if added later) */
 .flag {
-  font-size: 1.2rem;
-  transition: transform 0.4s ease;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
 }
 
 .lang-btn:hover .flag {
-  transform: rotate(10deg) scale(1.2);
+  transform: rotate(10deg) scale(1.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lang-btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
 }

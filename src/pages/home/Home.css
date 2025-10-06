@@ -1,0 +1,107 @@
+.home-container {
+  padding-bottom: 50px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* === Hero Section === */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+  transition: var(--transition);
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 20%;
+  left: 5%;
+  color: #fff;
+  z-index: 2;
+}
+
+.hero-overlay h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.hero-overlay p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+.hero-overlay button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hero-overlay button:hover {
+  transform: scale(1.05);
+  background: #ff2d35;
+}
+
+/* === Popular Anime Section === */
+.anime-section {
+  padding: 40px 5%;
+}
+
+.anime-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.anime-card {
+  background: var(--card-background);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.anime-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.anime-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: var(--shadow-hover);
+}
+
+.anime-info {
+  padding: 10px;
+}
+
+.anime-info h4 {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.anime-info p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

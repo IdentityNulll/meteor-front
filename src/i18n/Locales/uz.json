@@ -1,9 +1,33 @@
 {
-    "header" : {
-        "home" : "Bosh",
-        "genres": "Janrlar",
-        "profile": "Profil",
-        "login": "Ro'yxatdan o'tish",
-        "stream" : "Anime Stream"
-    }
+  "header": {
+    "home": "Bosh",
+    "genres": "Janrlar",
+    "profile": "Profil",
+    "login": "Ro'yxatdan o'tish",
+    "stream": "Anime Stream"
+  },
+  "home": {
+    "watch": "Hoziroq Ko'rish",
+    "popular": "Mashhur Animelar"
+  },
+  "genres": {
+    "title": "Janrlar bo‘yicha ko‘rish",
+    "list": [
+      "Harakat",
+      "Sarguzasht",
+      "Romantika",
+      "Komediya",
+      "Drama",
+      "Fantastika",
+      "Dahshat",
+      "Ilmiy-fantastika",
+      "Hayot bo‘lagi",
+      "Sport",
+      "Sirli",
+      "G‘ayritabiiy",
+      "Musiqa",
+      "Psixologik",
+      "Tarixiy"
+    ]
+  }
 }
