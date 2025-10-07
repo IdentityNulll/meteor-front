@@ -4,16 +4,14 @@ import Animate from "./Animate";
 import { useTranslation } from "react-i18next";
 
 const Search = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="dark-theme">
-
       <div className="animated-bg">
         <Animate />
       </div>
 
       <div className="container">
-
         {/* Main Content */}
         <div className="main-content">
           <div className="title-container">
@@ -42,13 +40,8 @@ const Search = () => {
 
         {/* Footer */}
         <footer>
-          <div className="footer-links">
-            <a href="#">Privacy policy</a> - 
-            <a href="#">Content removal</a> • 
-            <a href="#">Contact us</a>
-          </div>
           <div className="footer-brand">
-            METEOR DUBBING - Made with Identitynull, SEVEN
+            <span>METEOR DUBBING - Made with</span>
           </div>
         </footer>
       </div>
