@@ -1,4 +1,4 @@
-/* Basic Reset */
+/* 🌐 Reset */
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +16,7 @@ li {
 }
 
 /* ----------------------------- */
-/* Header Layout */
+/* 🌐 Header Layout */
 .header-container {
   width: 100%;
   height: 70px;
@@ -24,10 +24,9 @@ li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 20px;
   color: var(--text-color);
   box-shadow: var(--shadow);
-  transition: var(--transition);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -36,163 +35,174 @@ li {
 }
 
 /* ----------------------------- */
-/* Logo Section */
+/* 🔹 Logo */
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: var(--primary-color);
   transition: 0.3s ease;
-  letter-spacing: 0.5px;
+  flex-shrink: 0;
 }
 
 .logo img {
-  transition: transform 0.4s ease;
+  width: 50px;
+  height: auto;
+  transition: transform 0.3s ease;
 }
 
 .logo:hover img {
   transform: rotate(8deg) scale(1.1);
 }
 
-.logo:hover span {
-  color: var(--primary-color);
-  text-shadow: 0 0 8px var(--primary-color);
+/* ----------------------------- */
+/* 🔹 Nav + Search */
+.nav-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex: 1;
+  justify-content: center;
+  min-width: 0; /* prevent flex overflow */
 }
 
-/* ----------------------------- */
-/* Navigation Links */
+/* 🔹 Navigation */
 .nav-links {
   display: flex;
   align-items: center;
   gap: 25px;
-  position: relative;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
   color: var(--text-color);
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1rem;
   position: relative;
   transition: color 0.3s ease;
-}
-
-/* Fancy hover underline animation */
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: var(--primary-color);
-  transition: width 0.3s ease;
-  border-radius: 5px;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
   color: var(--primary-color);
-  text-shadow: 0 0 10px var(--primary-color);
-}
-
-/* Active link (optional) */
-.nav-links a.active {
-  color: var(--primary-color);
+  text-shadow: 0 0 8px var(--primary-color);
 }
 
 /* ----------------------------- */
-/* Utilities Section */
+/* 🔹 Search */
+.header-search {
+  position: relative;
+  flex: 1;
+  max-width: 260px;
+  min-width: 140px;
+}
+
+.header-search input {
+  width: 100%;
+  padding: 8px 40px 8px 12px;
+  border-radius: 25px;
+  border: 1px solid var(--border-color);
+  background: var(--secondary-color);
+  color: var(--text-color);
+  outline: none;
+  transition: 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.header-search input::placeholder {
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+.header-search input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.header-search .search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+/* 🔹 Search Results */
+.search-results {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
+  background: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 120;
+}
+
+.search-item {
+  padding: 10px 12px;
+  display: block;
+  color: var(--text-color);
+  transition: background 0.2s ease;
+}
+
+.search-item:hover {
+  background: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ----------------------------- */
+/* 🔹 Utilities */
 .utilis {
   display: flex;
   align-items: center;
   gap: 15px;
+  flex-shrink: 0;
 }
 
 .login-btn {
   background: var(--primary-color);
   color: #fff;
-  border: none;
-  border-radius: 8px;
   padding: 8px 16px;
-  width: 160px;
+  border-radius: 8px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: 0.4s ease;
+  transition: 0.3s ease;
   font-weight: 500;
-  position: relative;
-  overflow: hidden;
+  white-space: nowrap;
 }
 
-/* Login Button Glow */
-.utilis button {
-  background: var(--primary-color);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: 0.4s ease;
-  font-weight: 500;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Shiny hover animation */
-.utilis button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
-  transform: skewX(-25deg);
-  transition: 0.5s;
-}
-
-.utilis button:hover::before {
-  left: 125%;
-}
-
-.utilis button:hover {
-  transform: scale(1.08);
+.login-btn:hover {
   background: #ff1b26;
-  box-shadow: 0 0 15px var(--primary-color);
-}
-
-.utilis button:active {
-  transform: scale(0.96);
+  box-shadow: 0 0 12px var(--primary-color);
+  transform: scale(1.05);
 }
 
 /* ----------------------------- */
-/* Hamburger Menu */
+/* 🔹 Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
   gap: 4px;
   cursor: pointer;
   z-index: 110;
+  flex-shrink: 0;
 }
 
 .hamburger span {
   width: 26px;
   height: 3px;
   background: var(--text-color);
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
-/* When open, turn into X */
 .hamburger.open span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
@@ -204,7 +214,7 @@ li {
 }
 
 /* ----------------------------- */
-/* Mobile Dropdown Menu */
+/* 🔹 Mobile Menu */
 .mobile-menu {
   position: absolute;
   top: 70px;
@@ -238,7 +248,6 @@ li {
 .mobile-menu a {
   font-size: 1.1rem;
   color: var(--text-color);
-  transition: color 0.3s ease;
 }
 
 .mobile-menu a:hover {
@@ -246,8 +255,34 @@ li {
 }
 
 /* ----------------------------- */
-/* Responsive */
-@media (max-width: 680px) {
+/* 📱 Responsive */
+@media (max-width: 1024px) {
+  .nav-links {
+    display: none; /* hide links earlier for tablets */
+  }
+
+  .header-search {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0 15px;
+    gap: 10px;
+  }
+
+  .nav-search-wrapper {
+    flex: 1;
+    justify-content: space-evenly;
+    gap: 10px;
+  }
+
+  .header-search {
+    width: 50%;
+    
+  }
+
   .utilis {
     display: none;
   }
@@ -256,11 +291,11 @@ li {
     display: flex;
   }
 
-  .nav-links {
-    display: none;
-  }
+}
 
-  .mobile-menu .login-btn {
-    width: 70%;
+@media (max-width: 480px) {
+  .header-search input {
+    font-size: 0.8rem;
+    padding: 6px 30px 6px 10px;
   }
 }

@@ -1,118 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
+/* 🌈 Theme Variables */
+:root {
+  --primary-color: #e50914;
+  --secondary-color: #141414;
+  --background-color: #0a0a0a;
+  --text-color: #ffffff;
+  --text-secondary: #b3b3b3;
+  --card-background: #1a1a1a;
+  --border-color: #333;
+  --success-color: #46d369;
+  --warning-color: #f9a825;
+  --error-color: #e53935;
+  --transition: all 0.3s ease;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* 🌞 Light Mode */
+:root[data-theme="light"] {
+  --secondary-color: #ffffff;
+  --background-color: #f5f5f5;
+  --text-color: #111111;
+  --text-secondary: #444444;
+  --card-background: #ffffff;
+  --border-color: #dddddd;
+  --success-color: #2e7d32;
+  --warning-color: #fbc02d;
+  --error-color: #d32f2f;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌑 Dark Mode */
+:root[data-theme="dark"] {
+  --secondary-color: #141414;
+  --background-color: #0a0a0a;
+  --text-color: #ffffff;
+  --text-secondary: #b3b3b3;
+  --card-background: #1a1a1a;
+  --border-color: #333;
+}
+
+/* ✨ Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.login-page {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Canvas background */
+.login-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: linear-gradient(
+    135deg,
+    var(--background-color),
+    var(--secondary-color)
+  );
+}
 
 /* Container */
-.container {
-  position: relative;
-  width: 350px;
+.container-login {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 450px;
+  width: 900px;
+  height: 550px;
+  background: var(--card-background);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 1s ease;
 }
 
+/* Form Side */
 .form-box {
-  position: absolute;
+  flex: 1;
+  padding: 50px;
+  position: relative;
+}
+
+/* Image Side */
+.img-box {
+  flex: 1;
+  background: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./400x500.png");
+  background-size: cover;
+  background-position: center;
+}
+.img-box img {
   width: 100%;
   height: 100%;
-  background: var(--primary-color);
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 0 20px rgba(255,0,0,0.5);
-  color: #fff;
-  backface-visibility: hidden;
-  transform: scale(0.9);
-  opacity: 0;
-  transition: all 0.5s ease;
+  object-fit: cover;
 }
 
-.form-box.active {
-  transform: scale(1);
-  opacity: 1;
-  z-index: 1;
+/* Form */
+.form {
+  display: none;
+  animation: slide 0.8s ease;
 }
-
-h2 {
+.form.active {
+  display: block;
+}
+.form h2 {
+  color: var(--primary-color);
   text-align: center;
-  margin-bottom: 20px;
-  color: #ff2a2a;
-  text-shadow: 0 0 5px #ff0000;
+  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
-/* Input Box */
+/* Input */
 .input-box {
   position: relative;
-  margin: 20px 0;
+  margin-bottom: 25px;
 }
-
 .input-box input {
   width: 100%;
-  padding: 10px;
+  padding: 12px 40px 12px 10px;
   background: transparent;
-  border: none;
-  border-bottom: 2px solid #444;
-  color: #fff;
-  font-size: 16px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
   outline: none;
-  transition: 0.3s;
+  color: var(--text-color);
+  font-size: 14px;
+  transition: var(--transition);
 }
-
+.input-box input::placeholder {
+  color: transparent;
+}
 .input-box label {
   position: absolute;
-  left: 0;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  font-size: 14px;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+.input-box input:focus ~ label,
+.input-box input:not(:placeholder-shown) ~ label {
+  top: -8px;
+  left: 8px;
+  font-size: 12px;
+  background: var(--card-background);
+  padding: 0 5px;
+  color: var(--primary-color);
+}
+
+/* Password Toggle */
+.toggle-password {
+  position: absolute;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #888;
-  pointer-events: none;
-  transition: 0.3s;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
 }
-
-.input-box input:focus,
-.input-box input:valid {
-  border-bottom-color: #ff2a2a;
-}
-
-.input-box input:focus ~ label,
-.input-box input:valid ~ label {
-  top: -5px;
-  font-size: 12px;
-  color: #ff2a2a;
+.toggle-password:hover {
+  color: var(--primary-color);
 }
 
 /* Button */
 .btn {
   width: 100%;
-  padding: 10px;
-  background: #ff2a2a;
+  padding: 12px;
+  background: var(--primary-color);
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 8px;
   color: #fff;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: var(--transition);
 }
-
 .btn:hover {
-  background: #ff0000;
-  box-shadow: 0 0 15px #ff2a2a;
+  background: #cc0000;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
 }
 
 /* Switch Text */
 .switch {
-  text-align: center;
+  color: var(--text-secondary);
   margin-top: 15px;
-  font-size: 14px;
-  color: #aaa;
+  text-align: center;
 }
-
 .switch a {
-  color: #ff2a2a;
+  color: var(--primary-color);
   text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+  font-weight: 600;
 }
 
-.switch a:hover {
-  color: #ff0000;
-  text-shadow: 0 0 5px #ff2a2a;
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

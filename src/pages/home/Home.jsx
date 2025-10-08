@@ -96,9 +96,10 @@ function Home() {
           ))}
         </Swiper>
 
+        {/* Hero controls */}
         <div className="hero-controls">
-          <div className="hero-prev">‹</div>
-          <div className="hero-next">›</div>
+          <div className="hero-prev">&#10094;</div> {/* < */}
+          <div className="hero-next">&#10095;</div> {/* > */}
           <div className="hero-pagination"></div>
         </div>
       </section>
@@ -127,7 +128,7 @@ function Home() {
             1024: { slidesPerView: 4, spaceBetween: 25 },
             1280: { slidesPerView: 5, spaceBetween: 30 },
           }}
-          loop={featured.length > 1}
+          loop={popular.length > 1}
           className="popular-swiper"
         >
           {popular.map((anime) => (

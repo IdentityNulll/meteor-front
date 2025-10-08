@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../api/axios";
+import axios from "../../api/axios.js";
 import "./Admin.css";
 import { Link } from "react-router-dom";
+import AdminAnimate from "./AdminAnimate.jsx";
 
 function Admin() {
   const [animes, setAnimes] = useState([]);
@@ -68,6 +69,10 @@ function Admin() {
 
   return (
     <div className="admin-page">
+      {/* 🎨 Background animatsiya */}
+      <AdminAnimate />
+
+      {/* Panel content */}
       <h1>Admin Panel</h1>
 
       <form className="admin-form" onSubmit={handleSubmit}>
@@ -98,23 +103,14 @@ function Admin() {
           <option value="ongoing">Ongoing</option>
           <option value="completed">Completed</option>
         </select>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          required
-        />
+        <input type="file" accept="image/*" onChange={handleFileChange} required />
         <button type="submit">Add Anime</button>
       </form>
 
       <div className="anime-list">
         {animes.length > 0 ? (
           animes.map((anime) => (
-            <Link
-              to={`/admin/anime/${anime._id}`}
-              key={anime._id}
-              className="anime-card"
-            >
+            <Link to={`/admin/anime/${anime._id}`} key={anime._id} className="anime-card">
               <img src={anime.imgURL} alt={anime.title} />
               <div className="anime-info">
                 <h3>{anime.title}</h3>

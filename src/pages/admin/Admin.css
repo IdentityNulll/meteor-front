@@ -42,26 +42,27 @@ body {
   color: var(--text-color);
   transition: var(--transition);
 }
-
-/* 📌 Admin page */
 .admin-page {
+  position: relative;
+  z-index: 1;
   padding: 40px;
   max-width: 1200px;
   margin: auto;
 }
 
-.admin-page h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  text-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
-  animation: fadeDown 1s ease;
+.admin-page h1,
+.admin-form,
+.anime-list {
+  position: relative;
+  z-index: 2;
 }
 
 /* 📝 Form */
 .admin-form {
-  background: var(--card-background);
+  background: var(--blur-background);
+  border: 1px solid var(--border-color);
+  border-color: #e50914;
+  backdrop-filter: blur(10px);
   padding: 25px;
   border-radius: 15px;
   box-shadow: var(--shadow);
@@ -69,7 +70,7 @@ body {
   flex-direction: column;
   gap: 15px;
   margin-bottom: 40px;
-  animation: fadeUp 1s ease;
+  animation: fadeUp 2s ease;
 }
 
 .admin-form input,
@@ -78,10 +79,17 @@ body {
   padding: 12px 15px;
   border-radius: 10px;
   border: 1px solid var(--border-color);
-  background: transparent;
-  color: var(--text-color);
+  background: var(--card-background); /* qora fon */
+  color: var(--text-color); /* oq text */
   outline: none;
   transition: var(--transition);
+  appearance: none; /* browser default arrow ni o‘chiradi */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.admin-form select option {
+  background: var(--card-background);
+  color: var(--text-color);
 }
 
 .admin-form input:focus,
@@ -171,6 +179,10 @@ body {
   color: #fff;
   cursor: pointer;
   transition: var(--transition);
+}
+
+textarea {
+  resize: none;
 }
 
 .anime-info button:hover {

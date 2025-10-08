@@ -1,8 +1,7 @@
-import React, { use } from "react";
+
 import "./Search.css";
 import Animate from "./Animate";
 import { useTranslation } from "react-i18next";
-
 const Search = () => {
   const { t } = useTranslation();
   return (
@@ -41,7 +40,7 @@ const Search = () => {
         {/* Footer */}
         <footer>
           <div className="footer-brand">
-            <span>METEOR DUBBING - Made with</span>
+            <span>METEOR DUBBING - Made By</span>
           </div>
         </footer>
       </div>

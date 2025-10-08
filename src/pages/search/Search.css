@@ -1,5 +1,3 @@
-
-
 /* ==========================
 🌌 Background + Canvas
 ========================== */
@@ -32,9 +30,10 @@
   align-items: center;
   width: 100% !important;
   justify-content: space-between;
-  height: 100vh;
+  height: 50vh;
   padding: 20px;
   margin-top: 200px;
+  overflow: hidden !important;
 }
 
 /* ==========================
@@ -45,6 +44,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
+  z-index: 999;
 }
 
 .logo {
@@ -96,6 +96,7 @@ header {
   justify-content: flex-start;
   flex-grow: 1;
   padding-top: 40px;
+  /* margin-top: 200px; */
 }
 
 .title-container {
@@ -145,7 +146,7 @@ header {
   padding: 15px 20px;
   width: 550px;
   color: var(--text-color);
-  font-size: 16px;
+  font-size: 12px;
   outline: none;
 }
 
@@ -206,15 +207,13 @@ footer {
 
 .footer-brand {
   color: var(--text-secondary);
-  margin-bottom: 10px;
-  transform: translateY(-100px);
+  margin-bottom: 480px;
 }
 
-.footer-brand>span::after {
-    content: " IDENTITYNULL, SEVEN";
-    color: var(--primary-color);
+.footer-brand > span::after {
+  content: " IDENTITYNULL, SEVEN";
+  color: var(--primary-color);
 }
-
 
 /* ==========================
 📱 Responsive
@@ -237,11 +236,15 @@ footer {
   }
 
   .search-container {
-    max-width: 90%;
+    max-width: 80%;
   }
 
   .main-content {
     padding-top: 30px;
+  }
+  .search-input {
+    width: 300px;
+    font-size: 14px;
   }
 }
 
@@ -250,8 +253,9 @@ footer {
     width: 120px;
   }
 
+
   .title-container h1 {
-    font-size: 28px;
+    font-size: 25px;
   }
 
   .title-container p {
@@ -264,5 +268,11 @@ footer {
 
   .main-content {
     padding-top: 20px;
+  }
+  .title-container {
+    width: 250px;
+  }
+  .footer-brand>span{
+    font-size: 12px !important;
   }
 }
