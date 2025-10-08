@@ -7,6 +7,8 @@ import Genres from './pages/genre/Genres'
 import Login from './pages/Login/Login'
 import Header from './components/Header/Header'
 import './styles/Theme.css'
+import Admin from './pages/admin/Admin'
+import OneAnime from './pages/oneAnime/OneAnime'
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
     <>
     <Header/>
       <Routes>
+        <Route path='/admin' element={<Admin/>}/>
+        <Route path='/admin/anime/:id' element={<OneAnime/>}/>
         <Route path='/' element={<Search/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/home' element={<Home/>}/>

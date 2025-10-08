@@ -1,0 +1,182 @@
+/* 🌑 Root ranglardan foydalanamiz */
+:root {
+  --primary-color: #e50914;
+  --secondary-color: #141414;
+  --background-color: #0a0a0a;
+  --text-color: #ffffff;
+  --text-secondary: #b3b3b3;
+  --card-background: #1a1a1a;
+  --border-color: #333;
+  --success-color: #46d369;
+  --error-color: #e53935;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.7);
+  --transition: all 0.3s ease;
+}
+
+/* 🌍 Page layout */
+.one-anime-page {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px;
+  color: var(--text-color);
+  animation: fadeUp 0.8s ease;
+}
+
+.one-anime-page h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
+  animation: fadeDown 1s ease;
+}
+
+.one-anime-page img {
+  display: block;
+  margin: 0 auto 30px;
+  width: 250px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.one-anime-page img:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 📝 Anime Edit Form */
+.one-anime-page form {
+  background: var(--card-background);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  margin-bottom: 35px;
+  animation: fadeUp 1s ease;
+}
+
+.one-anime-page form h2 {
+  margin-bottom: 15px;
+  color: var(--primary-color);
+  font-size: 1.4rem;
+}
+
+.one-anime-page input,
+.one-anime-page textarea,
+.one-anime-page select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  outline: none;
+  transition: var(--transition);
+}
+
+.one-anime-page input:focus,
+.one-anime-page textarea:focus,
+.one-anime-page select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.one-anime-page button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.one-anime-page button:hover {
+  background: #ff1c23;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 🎬 Episode Section */
+.episodes-section {
+  margin-top: 40px;
+}
+
+.episodes-section h2 {
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.episode-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.episode-card {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  animation: fadeUp 0.8s ease;
+}
+
+.episode-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.episode-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.episode-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.episode-card button {
+  background: var(--error-color);
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.episode-card button:hover {
+  background: #ff4444;
+  transform: scale(1.05);
+}
+
+/* 🌟 Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,202 @@
+/* 🎨 Root ranglar (sen yozgan ranglardan foydalanildi) */
+:root {
+  --primary-color: #e50914;
+  --secondary-color: #141414;
+  --background-color: #0a0a0a;
+  --text-color: #ffffff;
+  --text-secondary: #b3b3b3;
+  --card-background: #1a1a1a;
+  --border-color: #333;
+  --success-color: #46d369;
+  --warning-color: #f9a825;
+  --error-color: #e53935;
+  --transition: all 0.3s ease;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* 🌞 Light Mode */
+:root[data-theme="light"] {
+  --background-color: #f5f5f5;
+  --text-color: #111;
+  --text-secondary: #444;
+  --card-background: #fff;
+  --border-color: #ddd;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌑 Dark Mode */
+:root[data-theme="dark"] {
+  --background-color: #0a0a0a;
+  --text-color: #fff;
+  --text-secondary: #b3b3b3;
+  --card-background: #1a1a1a;
+  --border-color: #333;
+}
+
+/* Global */
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--background-color);
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+/* 📌 Admin page */
+.admin-page {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.admin-page h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
+  animation: fadeDown 1s ease;
+}
+
+/* 📝 Form */
+.admin-form {
+  background: var(--card-background);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+  animation: fadeUp 1s ease;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  outline: none;
+  transition: var(--transition);
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.admin-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.admin-form button:hover {
+  background: #ff1c23;
+  box-shadow: var(--shadow-hover);
+  transform: scale(1.05);
+}
+
+/* 🎬 Anime List */
+.anime-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 25px;
+}
+
+/* 🎴 Anime Card */
+.anime-card {
+  display: block;
+  background: var(--card-background);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(0);
+  transition: var(--transition);
+  animation: fadeUp 0.8s ease;
+}
+
+.anime-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--shadow-hover);
+}
+
+.anime-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.anime-card:hover img {
+  filter: brightness(1.1);
+}
+
+.anime-info {
+  padding: 15px;
+}
+
+.anime-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.anime-info p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+/* ❌ Delete Button */
+.anime-info button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--error-color);
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.anime-info button:hover {
+  background: #ff4444;
+  transform: scale(1.05);
+}
+
+/* 🌟 Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
