@@ -111,7 +111,7 @@ function Admin() {
         {animes.length > 0 ? (
           animes.map((anime) => (
             <Link to={`/admin/anime/${anime._id}`} key={anime._id} className="anime-card">
-              <img src={anime.imgURL} alt={anime.title} />
+              <img src={anime.imgURL} alt={anime.title} loading="lazy" />
               <div className="anime-info">
                 <h3>{anime.title}</h3>
                 <p>{anime.description}</p>
