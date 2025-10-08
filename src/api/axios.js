@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Set your backend URL here
 const api = axios.create({
-  baseURL: "https://meteor.identitynull.uz/api/", // change if your backend runs elsewhere
+  baseURL: "http://meteor.identitynull.uz/api/", // change if your backend runs elsewhere
   headers: {
     "Content-Type": "application/json",
   },
