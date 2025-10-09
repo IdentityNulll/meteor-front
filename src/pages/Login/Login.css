@@ -240,3 +240,17 @@ body {
     transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  .container-login {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+  .img-box {
+    display: none;
+  }
+  .form-box {
+    padding: 30px;
+  }
+}

@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
   const navigate = useNavigate();
+  const {t} = useTranslation()
 
   const [activeForm, setActiveForm] = useState("login");
   const [showPassword, setShowPassword] = useState({
@@ -261,7 +263,7 @@ const Login = () => {
               activeForm === "login" ? "active" : ""
             }`}
           >
-            <h2>Login</h2>
+            <h2>{t("login.login")}</h2>
             <form onSubmit={handleLogin}>
               <div className="input-box">
                 <input
@@ -271,7 +273,7 @@ const Login = () => {
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
                 />
-                <label>Email</label>
+                <label>{t("login.email")}</label>
               </div>
               <div className="input-box">
                 <input
@@ -281,7 +283,7 @@ const Login = () => {
                   value={loginPass}
                   onChange={(e) => setLoginPass(e.target.value)}
                 />
-                <label>Password</label>
+                <label>{t("login.password")}</label>
                 <FontAwesomeIcon
                   icon={faEye}
                   className="toggle-password"
@@ -289,10 +291,10 @@ const Login = () => {
                 />
               </div>
               <button type="submit" className="btn">
-                Login
+                {t("login.kirish")}
               </button>
               <p className="switch">
-                Don't have an account?{" "}
+                {t("login.noAccount")}{" "}
                 <a
                   href="#"
                   onClick={(ev) => {
@@ -300,7 +302,7 @@ const Login = () => {
                     setActiveForm("register");
                   }}
                 >
-                  Register
+                  {t("login.register")}
                 </a>
               </p>
             </form>
@@ -312,7 +314,7 @@ const Login = () => {
               activeForm === "register" ? "active" : ""
             }`}
           >
-            <h2>Register</h2>
+            <h2>{t("register.register")}</h2>
             <form onSubmit={handleRegister}>
               <div className="input-box">
                 <input
@@ -322,7 +324,7 @@ const Login = () => {
                   value={regName}
                   onChange={(e) => setRegName(e.target.value)}
                 />
-                <label>Full Name</label>
+                <label>{t("register.name")}</label>
               </div>
               <div className="input-box">
                 <input
@@ -332,7 +334,7 @@ const Login = () => {
                   value={regEmail}
                   onChange={(e) => setRegEmail(e.target.value)}
                 />
-                <label>Email</label>
+                <label>{t("register.email")}</label>
               </div>
               <div className="input-box">
                 <input
@@ -342,7 +344,7 @@ const Login = () => {
                   value={regPass}
                   onChange={(e) => setRegPass(e.target.value)}
                 />
-                <label>Password</label>
+                <label>{t("register.password")}</label>
                 <FontAwesomeIcon
                   icon={faEye}
                   className="toggle-password"
@@ -357,7 +359,7 @@ const Login = () => {
                   value={regConfirm}
                   onChange={(e) => setRegConfirm(e.target.value)}
                 />
-                <label>Confirm Password</label>
+                <label>{t("register.repeatPassword")}</label>
                 <FontAwesomeIcon
                   icon={faEye}
                   className="toggle-password"
@@ -365,10 +367,10 @@ const Login = () => {
                 />
               </div>
               <button type="submit" className="btn">
-                Register
+                {t("register.registerBtn")}
               </button>
               <p className="switch">
-                Already have an account?{" "}
+                {t("register.haveAccount")}{" "}
                 <a
                   href="#"
                   onClick={(ev) => {
@@ -376,7 +378,7 @@ const Login = () => {
                     setActiveForm("login");
                   }}
                 >
-                  Login
+                  {t("register.login")}
                 </a>
               </p>
             </form>

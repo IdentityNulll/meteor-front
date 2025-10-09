@@ -9,6 +9,7 @@ import Header from './components/Header/Header'
 import './styles/Theme.css'
 import Admin from './pages/admin/Admin'
 import OneAnime from './pages/oneAnime/OneAnime'
+import OneWatchAnime from './pages/oneWatchAnime/OneWatchAnime'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/' element={<Search/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/anime/:id' element={<OneWatchAnime/>}/>
         <Route path='/genres' element={<Genres/>}/>
         <Route path='/login' element={<Login/>}/>
       </Routes>

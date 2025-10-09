@@ -30,9 +30,28 @@
       "Tarixiy"
     ]
   },
-    "search": {
-        "placeholder": "Animelarni qidirish...",
-        "meteor": "METEOR DUBBING",
-        "Anime": "O'zbekistondagi Eng Yaxshi Anime Ko'rish Sayti"
-    }
+  "search": {
+    "placeholder": "Animelarni qidirish...",
+    "meteor": "METEOR DUBBING",
+    "Anime": "O'zbekistondagi Eng Yaxshi Anime Ko'rish Sayti"
+  },
+  "login": {
+    "login": "Kirish METEOR",
+    "email": "Email",
+    "password": "Parol",
+    "kirish": "Kirish",
+    "noAccount": "Akkaunt yo'qmi?",
+    "register": "Ro'yxatdan o'tish"
+  },
+  "register": {
+    "register": "Ro'yxatdan o'tish METEOR",
+    "name": "To'liq Ism",
+    "email": "Email",
+    "password": "Parol",
+    "repeatPassword": "Parolni takrorlang",
+    "confirmPassword": "Parolni tasdiqlang",
+    "registerBtn": "Ro'yxatdan o'tish",
+    "haveAccount": "Akkauntingiz bormi?",
+    "login": "Kirish"
+  }
 }

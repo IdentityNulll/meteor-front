@@ -6,6 +6,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useTranslation } from "react-i18next";
+import api from "../../api/axios";
+import { Link } from "react-router-dom";
 
 function Home() {
   const { t } = useTranslation();
@@ -13,59 +15,20 @@ function Home() {
   const [popular, setPopular] = useState([]);
 
   useEffect(() => {
-    setFeatured([
-      {
-        _id: "1",
-        title: "Attack on Titan",
-        description: "Humanity fights for survival against the titans.",
-        imageUrl: "https://placehold.co/1200x600?text=Attack+on+Titan",
-      },
-      {
-        _id: "2",
-        title: "Demon Slayer",
-        description: "A boy fights demons to save his sister.",
-        imageUrl: "https://placehold.co/1200x600?text=Demon+Slayer",
-      },
-      {
-        _id: "3",
-        title: "Jujutsu Kaisen",
-        description: "Curses and sorcerers clash in modern Japan.",
-        imageUrl: "https://placehold.co/1200x600?text=Jujutsu+Kaisen",
-      },
-    ]);
+    const fetchAnime = async () => {
+      try {
+        const res = await api.get("/anime"); // ✅ baseURL handles domain automatically
+        const allAnime = res.data;
 
-    setPopular([
-      {
-        _id: "a1",
-        title: "Solo Leveling",
-        genres: ["Action", "Fantasy"],
-        imageUrl: "https://placehold.co/300x400?text=Solo+Leveling",
-      },
-      {
-        _id: "a2",
-        title: "One Piece",
-        genres: ["Adventure"],
-        imageUrl: "https://placehold.co/300x400?text=One+Piece",
-      },
-      {
-        _id: "a3",
-        title: "Naruto",
-        genres: ["Action", "Shounen"],
-        imageUrl: "https://placehold.co/300x400?text=Naruto",
-      },
-      {
-        _id: "a4",
-        title: "Chainsaw Man",
-        genres: ["Horror", "Action"],
-        imageUrl: "https://placehold.co/300x400?text=Chainsaw+Man",
-      },
-      {
-        _id: "a5",
-        title: "My Hero Academia",
-        genres: ["Action", "Superpower"],
-        imageUrl: "https://placehold.co/300x400?text=My+Hero+Academia",
-      },
-    ]);
+        // Assuming your backend returns: title, description, imgURL, genre[], etc.
+        setFeatured(allAnime.slice(0, 3)); // first 3 featured
+        setPopular(allAnime); // rest for popular
+      } catch (err) {
+        console.error("Failed to fetch anime:", err);
+      }
+    };
+
+    fetchAnime();
   }, []);
 
   return (
@@ -83,23 +46,30 @@ function Home() {
           {featured.map((anime) => (
             <SwiperSlide key={anime._id}>
               <div className="hero-slide">
-                <img src={anime.imageUrl} alt={anime.title} />
+                <img
+                  src={
+                    anime.imgURL ||
+                    "https://placehold.co/1200x600?text=No+Image"
+                  }
+                  alt={anime.title}
+                />
                 <div className="hero-overlay glass">
                   <h2>{anime.title}</h2>
                   <p>{anime.description}</p>
-                  <button className="glow-btn">
-                    {t("home.watch") || "Watch Now"}
-                  </button>
+                  <Link to={`/anime/${anime._id}`}>
+                    <button className="glow-btn">
+                      {t("home.watch") || "Watch Now"}
+                    </button>
+                  </Link>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
 
-        {/* Hero controls */}
         <div className="hero-controls">
-          <div className="hero-prev">&#10094;</div> {/* < */}
-          <div className="hero-next">&#10095;</div> {/* > */}
+          <div className="hero-prev">&#10094;</div>
+          <div className="hero-next">&#10095;</div>
           <div className="hero-pagination"></div>
         </div>
       </section>
@@ -133,13 +103,20 @@ function Home() {
         >
           {popular.map((anime) => (
             <SwiperSlide key={anime._id}>
+              <Link to={`/anime/${anime._id}`}>
               <div className="anime-card glass">
-                <img src={anime.imageUrl} alt={anime.title} />
+                <img
+                  src={
+                    anime.imgURL || "https://placehold.co/300x400?text=No+Image"
+                  }
+                  alt={anime.title}
+                />
                 <div className="anime-info">
                   <h4>{anime.title}</h4>
-                  <p>{anime.genres.join(" • ")}</p>
+                  <p>{anime.genre?.join(" • ") || "Unknown"}</p>
                 </div>
               </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
