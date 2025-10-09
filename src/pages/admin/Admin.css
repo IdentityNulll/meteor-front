@@ -134,6 +134,7 @@ body {
   color: inherit;
   transform: translateY(0);
   transition: var(--transition);
+  height: auto;
   animation: fadeUp 0.8s ease;
 }
 

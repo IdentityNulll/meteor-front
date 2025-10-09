@@ -13,6 +13,7 @@ function Home() {
   const { t } = useTranslation();
   const [featured, setFeatured] = useState([]);
   const [popular, setPopular] = useState([]);
+  console.log(popular.genre);
 
   useEffect(() => {
     const fetchAnime = async () => {
@@ -30,6 +31,7 @@ function Home() {
 
     fetchAnime();
   }, []);
+  console.log(popular);
 
   return (
     <div className="home-container">
@@ -92,11 +94,11 @@ function Home() {
           }}
           spaceBetween={25}
           breakpoints={{
-            320: { slidesPerView: 2, spaceBetween: 10 },
-            480: { slidesPerView: 2.5, spaceBetween: 15 },
-            768: { slidesPerView: 3, spaceBetween: 20 },
-            1024: { slidesPerView: 4, spaceBetween: 25 },
-            1280: { slidesPerView: 5, spaceBetween: 30 },
+            320: { slidesPerView: 1.5, spaceBetween: 10 },
+            480: { slidesPerView: 2, spaceBetween: 12 },
+            768: { slidesPerView: 3, spaceBetween: 15 },
+            1024: { slidesPerView: 4, spaceBetween: 20 },
+            1280: { slidesPerView: 5, spaceBetween: 25 },
           }}
           loop={popular.length > 1}
           className="popular-swiper"
@@ -104,18 +106,26 @@ function Home() {
           {popular.map((anime) => (
             <SwiperSlide key={anime._id}>
               <Link to={`/anime/${anime._id}`}>
-              <div className="anime-card glass">
-                <img
-                  src={
-                    anime.imgURL || "https://placehold.co/300x400?text=No+Image"
-                  }
-                  alt={anime.title}
-                />
-                <div className="anime-info">
-                  <h4>{anime.title}</h4>
-                  <p>{anime.genre?.join(" • ") || "Unknown"}</p>
+                <div className="anime-card glass">
+                  <img
+                    src={
+                      anime.imgURL ||
+                      "https://placehold.co/300x400?text=No+Image"
+                    }
+                    alt={anime.title}
+                  />
+                  <div className="anime-info">
+                    <h4>
+                      {anime.title.length > 20
+                        ? anime.title.slice(0, 20) + "..."
+                        : anime.title}
+                    </h4>
+                    <p>
+                      <strong>Genre:</strong> {anime.genre.join(", ")}
+                    </p>
+                    <p>{anime.views}</p>
+                  </div>
                 </div>
-              </div>
               </Link>
             </SwiperSlide>
           ))}

@@ -109,6 +109,7 @@
   overflow-x: auto; /* scroll only when needed */
   scroll-snap-type: x mandatory;
   padding: 1rem 0 1.5rem;
+  height: 400px;
   padding: 20px;
   justify-content: flex-start; /* aligns items to left inside the scroll */
 }

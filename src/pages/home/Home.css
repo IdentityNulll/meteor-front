@@ -199,6 +199,66 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   box-shadow: 0 0 8px rgba(255, 68, 68, 0.2);
+  background: rgba(20, 20, 20, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100% !important;
+  min-height: 320px;
+}
+
+.anime-card img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-bottom: 2px solid rgba(255, 68, 68, 0.3);
+  transition: transform 0.5s ease;
+}
+
+.anime-card:hover img {
+  transform: scale(1.05);
+}
+
+.anime-info {
+  padding: 10px;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.anime-info h4 {
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.anime-info p {
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
+  color: #bbb;
+}
+
+/* Responsive fixes */
+@media (max-width: 1024px) {
+  .anime-card {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .anime-card {
+    min-height: 240px;
+  }
+  .anime-info h4 {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .anime-card {
+    min-height: 200px;
+  }
+  .anime-info h4 {
+    font-size: 0.8rem;
+  }
 }
 
 .anime-card img {
@@ -269,6 +329,7 @@
   .hero-overlay h2 {
     font-size: 1.2rem;
   }
+
   .hero-overlay p {
     font-size: 0.8rem;
   }

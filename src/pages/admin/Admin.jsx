@@ -43,7 +43,13 @@ function Admin() {
     data.append("title", formData.title);
     data.append("description", formData.description);
     data.append("status", formData.status);
-    data.append("genre", formData.genre);
+    const genresArray = formData.genre
+      .split(",")
+      .map((g) => g.trim())
+      .filter((g) => g !== "");
+
+    // Append each genre separately to FormData
+    genresArray.forEach((g) => data.append("genre", g));
     data.append("img", imgFile);
 
     try {
@@ -103,18 +109,27 @@ function Admin() {
           <option value="ongoing">Ongoing</option>
           <option value="completed">Completed</option>
         </select>
-        <input type="file" accept="image/*" onChange={handleFileChange} required />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          required
+        />
         <button type="submit">Add Anime</button>
       </form>
 
       <div className="anime-list">
         {animes.length > 0 ? (
           animes.map((anime) => (
-            <Link to={`/admin/anime/${anime._id}`} key={anime._id} className="anime-card">
+            <Link
+              to={`/admin/anime/${anime._id}`}
+              key={anime._id}
+              className="anime-card"
+            >
               <img src={anime.imgURL} alt={anime.title} loading="lazy" />
               <div className="anime-info">
                 <h3>{anime.title}</h3>
-                <p>{anime.description}</p>
+                <p>{anime.description.length>40?anime.description.slice(0,30)+"...":anime.description}</p>
                 <p>
                   <strong>Genre:</strong> {anime.genre.join(", ")}
                 </p>
