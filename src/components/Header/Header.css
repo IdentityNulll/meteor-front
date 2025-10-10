@@ -280,7 +280,6 @@ li {
 
   .header-search {
     width: 50%;
-    
   }
 
   .utilis {
@@ -290,7 +289,6 @@ li {
   .hamburger {
     display: flex;
   }
-
 }
 
 @media (max-width: 480px) {
@@ -298,4 +296,17 @@ li {
     font-size: 0.8rem;
     padding: 6px 30px 6px 10px;
   }
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.user-avatar:hover {
+  transform: scale(1.05);
 }

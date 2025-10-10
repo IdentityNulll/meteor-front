@@ -12,9 +12,17 @@ function Header({ animes }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [user, setUser] = useState(null);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  // ✅ Load user info on mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) setUser(JSON.parse(storedUser));
+  }, []);
+
+  // ✅ Optional: Search system (can be uncommented later)
   // useEffect(() => {
   //   if (!searchTerm.trim()) {
   //     setSearchResults([]);
@@ -25,6 +33,12 @@ function Header({ animes }) {
   //   );
   //   setSearchResults(results);
   // }, [searchTerm, animes]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    window.location.reload();
+  };
 
   return (
     <div className="header-container">
@@ -75,9 +89,26 @@ function Header({ animes }) {
       <div className="utilis">
         <LanguageSwitcher />
         <ThemeSwitcher />
-        <button className="login-btn">
-          <Link to="/login">{t("header.login")}</Link>
-        </button>
+        {user ? (
+          <div className="user-menu">
+            <img
+              src={
+                user.profilePic
+                  ? user.profilePic.startsWith("http")
+                    ? user.profilePic
+                    : `https://meteor.identitynull.uz/${user.profilePic}`
+                  : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+              }
+              alt="profile"
+              className="user-avatar"
+              onClick={handleLogout} // click = logout
+            />
+          </div>
+        ) : (
+          <button className="login-btn">
+            <Link to="/login">{t("header.login")}</Link>
+          </button>
+        )}
       </div>
 
       {/* Hamburger */}
@@ -100,9 +131,24 @@ function Header({ animes }) {
         </Link>
         <LanguageSwitcher />
         <ThemeSwitcher />
-        <button className="login-btn" onClick={() => setMenuOpen(false)}>
-          <Link to="/login">{t("header.login")}</Link>
-        </button>
+        {user ? (
+          <img
+            src={
+              user.profilePic
+                ? user.profilePic.startsWith("http")
+                  ? user.profilePic
+                  : `https://meteor.identitynull.uz/${user.profilePic}`
+                : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+            }
+            alt="profile"
+            className="user-avatar"
+            onClick={handleLogout}
+          />
+        ) : (
+          <button className="login-btn" onClick={() => setMenuOpen(false)}>
+            <Link to="/login">{t("header.login")}</Link>
+          </button>
+        )}
       </div>
     </div>
   );

@@ -4,10 +4,11 @@ import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import api from "../../api/axios"; // ✅ import your axios instance
 
 const Login = () => {
   const navigate = useNavigate();
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const [activeForm, setActiveForm] = useState("login");
   const [showPassword, setShowPassword] = useState({
@@ -16,17 +17,8 @@ const Login = () => {
     confirmPassword: false,
   });
 
-  // in-memory users (session only). You can replace this with API calls later.
-  const [users, setUsers] = useState([
-    { email: "shokhrux@gmail.com", password: "adminshokhrux", role: "admin" },
-    // add more test users if you want
-  ]);
-
-  // controlled inputs for login
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPass, setLoginPass] = useState("");
-
-  // controlled inputs for register
   const [regName, setRegName] = useState("");
   const [regEmail, setRegEmail] = useState("");
   const [regPass, setRegPass] = useState("");
@@ -36,14 +28,13 @@ const Login = () => {
     setShowPassword((prev) => ({ ...prev, [field]: !prev[field] }));
   };
 
-  // Canvas reference + animation (kept same as your version)
   const canvasRef = useRef(null);
 
+  // 🎨 Canvas animation (unchanged)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -68,24 +59,15 @@ const Login = () => {
     });
 
     let mouse = { x: null, y: null, radius: 250 };
-    const handleMouseMove = (e) => {
-      mouse.x = e.x;
-      mouse.y = e.y;
-    };
-    const handleMouseOut = () => {
-      mouse.x = null;
-      mouse.y = null;
-    };
+    const handleMouseMove = (e) => (mouse = { x: e.x, y: e.y, radius: 250 });
+    const handleMouseOut = () => (mouse = { x: null, y: null });
     const handleTouchMove = (e) => {
       if (e.touches.length > 0) {
         mouse.x = e.touches[0].clientX;
         mouse.y = e.touches[0].clientY;
       }
     };
-    const handleTouchEnd = () => {
-      mouse.x = null;
-      mouse.y = null;
-    };
+    const handleTouchEnd = () => (mouse = { x: null, y: null });
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseout", handleMouseOut);
@@ -115,12 +97,8 @@ const Login = () => {
     }
 
     const particles = [];
-    const adjustParticleCount = () => {
-      const width = window.innerWidth;
-      if (width < 480) return 15;
-      if (width < 768) return 20;
-      return 30;
-    };
+    const adjustParticleCount = () =>
+      window.innerWidth < 480 ? 15 : window.innerWidth < 768 ? 20 : 30;
 
     const createParticles = () => {
       particles.length = 0;
@@ -131,7 +109,6 @@ const Login = () => {
     window.addEventListener("resize", createParticles);
 
     const connectParticles = () => {
-      let opacityValue = 1;
       for (let a = 0; a < particles.length; a++) {
         for (let b = a; b < particles.length; b++) {
           const distance = Math.hypot(
@@ -139,34 +116,17 @@ const Login = () => {
             particles[a].y - particles[b].y
           );
           if (distance < 200) {
-            opacityValue = 1 - distance / 200;
+            const opacityValue = 1 - distance / 200;
             ctx.strokeStyle = `${colors.line}${opacityValue})`;
-            ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
             ctx.stroke();
           }
-          if (mouse.x !== null && mouse.y !== null) {
-            const mouseDistance = Math.hypot(
-              particles[a].x - mouse.x,
-              particles[a].y - mouse.y
-            );
-            if (mouseDistance < mouse.radius) {
-              opacityValue = 1 - mouseDistance / mouse.radius;
-              ctx.strokeStyle = `${colors.line}${opacityValue})`;
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(particles[a].x, particles[a].y);
-              ctx.lineTo(mouse.x, mouse.y);
-              ctx.stroke();
-            }
-          }
         }
       }
     };
 
-    let animationId;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p) => {
@@ -174,53 +134,40 @@ const Login = () => {
         p.draw();
       });
       connectParticles();
-      animationId = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     };
     animate();
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseout", handleMouseOut);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("touchend", handleTouchEnd);
       observer.disconnect();
-      cancelAnimationFrame(animationId);
     };
   }, []);
 
-  // --- LOGIN handler ---
-  const handleLogin = (e) => {
+  // ✅ LOGIN
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const found = users.find(
-      (u) => u.email === loginEmail.trim() && u.password === loginPass
-    );
+    try {
+      const { data } = await api.post("/users/login", {
+        email: loginEmail,
+        password: loginPass,
+      });
 
-    if (found) {
-      // if user is admin go to /admin else go to /
-      if (found.role === "admin") {
-        // Optionally set a flag in localStorage/sessionStorage
-        localStorage.setItem(
-          "auth",
-          JSON.stringify({ email: found.email, role: found.role })
-        );
-        navigate("/admin");
-      } else {
-        localStorage.setItem(
-          "auth",
-          JSON.stringify({ email: found.email, role: found.role })
-        );
-        navigate("/");
+      console.log("✅ Login response:", data); // 👈 log backend response
+
+      if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        if (data.user.isAdmin) navigate("/admin");
+        else navigate("/");
       }
-    } else {
-      // invalid credentials -> back to root (or show message)
-      alert("Invalid credentials");
-      navigate("/");
+    } catch (err) {
+      console.error("❌ Login error:", err.response?.data || err);
+      alert(err.response?.data?.message || "Invalid credentials");
     }
   };
 
-  // --- REGISTER handler (adds to in-memory users) ---
-  const handleRegister = (e) => {
+  // ✅ REGISTER
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (!regName || !regEmail || !regPass || !regConfirm) {
       alert("Fill all fields");
@@ -230,34 +177,34 @@ const Login = () => {
       alert("Passwords do not match");
       return;
     }
-    // simple duplicate check
-    if (users.some((u) => u.email === regEmail.trim())) {
-      alert("User already exists");
-      return;
+
+    try {
+      const { data } = await api.post("/users/register", {
+        username: regName,
+        email: regEmail,
+        password: regPass,
+      });
+
+      console.log("✅ Register response:", data); // 👈 log backend response
+
+      alert("Registered successfully. You can now login.");
+      setActiveForm("login");
+      setRegName("");
+      setRegEmail("");
+      setRegPass("");
+      setRegConfirm("");
+    } catch (err) {
+      console.error("❌ Register error:", err.response?.data || err);
+      alert(err.response?.data?.message || "Registration failed");
     }
-    const newUser = {
-      email: regEmail.trim(),
-      password: regPass,
-      role: "user",
-      name: regName,
-    };
-    setUsers((prev) => [...prev, newUser]);
-    alert("Registered (session only). You can now login.");
-    setActiveForm("login");
-    // clear register fields
-    setRegName("");
-    setRegEmail("");
-    setRegPass("");
-    setRegConfirm("");
   };
 
   return (
     <div className="login-page">
       <canvas ref={canvasRef} className="login-canvas" />
-
       <div className="container-login">
         <div className="form-box">
-          {/* Login Form */}
+          {/* LOGIN FORM */}
           <div
             className={`form login-form ${
               activeForm === "login" ? "active" : ""
@@ -297,8 +244,8 @@ const Login = () => {
                 {t("login.noAccount")}{" "}
                 <a
                   href="#"
-                  onClick={(ev) => {
-                    ev.preventDefault();
+                  onClick={(e) => {
+                    e.preventDefault();
                     setActiveForm("register");
                   }}
                 >
@@ -308,7 +255,7 @@ const Login = () => {
             </form>
           </div>
 
-          {/* Register Form */}
+          {/* REGISTER FORM */}
           <div
             className={`form register-form ${
               activeForm === "register" ? "active" : ""
@@ -373,8 +320,8 @@ const Login = () => {
                 {t("register.haveAccount")}{" "}
                 <a
                   href="#"
-                  onClick={(ev) => {
-                    ev.preventDefault();
+                  onClick={(e) => {
+                    e.preventDefault();
                     setActiveForm("login");
                   }}
                 >
